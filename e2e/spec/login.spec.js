@@ -1,4 +1,6 @@
+const {browser, element } = require('protractor')
 const Login = require('../page_objects/login.po');
+const { protractor } = require('protractor/built/ptor');
 
 describe('Login da aplicação', () => {
     
@@ -8,6 +10,7 @@ describe('Login da aplicação', () => {
 
         Login.realizarLogin('GabrielRuiz@gmail.com', 'Gabriel123')
 
-        expect(driver.getCurrentUrl().toContain('/homeLogada'))
+        browser.sleep(1000)
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/homeLogada');
     })
 })

@@ -5,11 +5,18 @@
   "main": "index.js",
   "dependencies": {
     "jasmine-allure-reporter": "^1.0.2",
-    "protractor": "^7.0.0"
+    "jasmine-spec-reporter": "^5.0.2",
+    "protractor": "^7.0.0",
+    "protractor-helper": "^4.1.9"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "allure-commandline": "^2.13.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "webdriver-manager update && if exist allure-report rmdir allure-report /s /q",
+    "test": "protractor ./e2e/config/protractor.conf.js",
+    "posttest": "allure generate allure-results --clean -o allure-report || true",
+    "report": "allure serve"
   },
   "keywords": [],
   "author": "",

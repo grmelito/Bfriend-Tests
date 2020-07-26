@@ -13,6 +13,14 @@ describe('Flow Deslogado', () => {
         expect(Home.icones.isDisplayed()).toBe(true)
     })
 
+    it('Icones de Categorias redirecionando', () => {
+        browser.waitForAngularEnabled(false)
+        Home.clicarIcone()
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/#card-alimentacao');
+        browser.sleep(1000)    
+    })
+
     it('Botoes Clicaveis', () => {
         browser.waitForAngularEnabled(false)
         Home.clicarLogin()

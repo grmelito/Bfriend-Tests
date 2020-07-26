@@ -9,6 +9,10 @@ class Home {
 
     };
 
+    clicarIcone() {
+        this.icones.click()
+    };
+
     clicarLogin() {
         this.loginButton.click()
     };

@@ -10,7 +10,7 @@ class Fornecedor {
         this.numero = element(by.id('inputNumero'))
         this.complemento = element(by.id('inputComplemento'))
         this.bairro = element(by.id('inputBairro'))
-        this.confimarDados = element(by.buttonText('Confirmar Dados'))
+        this.confimarDados = element(by.buttonText('Confirmar dados'))
         
     };
 

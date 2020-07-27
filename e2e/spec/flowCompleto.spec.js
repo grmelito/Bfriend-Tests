@@ -6,6 +6,7 @@ const Home = require('../page_objects/home.po')
 const HomeLogada = require('../page_objects/homeLogada.po')
 const CadastroFornecedor = require('../page_objects/cadastroFornecedor.po')
 const CadastroLoja = require('../page_objects/cadastroLoja.po')
+const Perfil = require('../page_objects/perfil.po')
 
 
 describe('Flow Completo', () => {
@@ -63,6 +64,43 @@ describe('Flow Completo', () => {
         browser.sleep(1000)
         expect(alertDialog.getText()).toEqual('Anuncio Cadastrado com succeso!')
         alertDialog.dismiss()
+    })
+
+    it('Deve mostrar o perfil do anuncio', () => {
+        browser.waitForAngularEnabled(false)
+        browser.get('http://localhost:3000/homeLogada');
+        HomeLogada.clicarNoAnuncio()
+
+        browser.sleep(1000)
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/loja');
+    })
+
+    it('Deve mostrar o perfil do usuario', () => {
+        browser.waitForAngularEnabled(false)
+        browser.get('http://localhost:3000/homeLogada');
+        HomeLogada.entrarNoPerfil()
+
+        browser.sleep(1000)
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/perfilUsuario');
+    })
+
+    it('Deve atualizar a imagem do usuario', () => {
+        browser.waitForAngularEnabled(false)
+        browser.get('http://localhost:3000/perfilUsuario');
+        Perfil.trocarImagem()
+
+        const alertDialog = browser.switchTo().alert();
+        browser.sleep(1000)
+        expect(alertDialog.getText()).toEqual('Upload deu certo!')
+        alertDialog.dismiss()
+    })
+
+    it('Deve deslogar da conta', () => {
+        browser.waitForAngularEnabled(false)
+        browser.get('http://localhost:3000/homeLogada');
+        HomeLogada.sairDaConta()
+
+        expect(browser.getCurrentUrl()).toEqual('http://localhost:3000/');
     })
 
 })
